@@ -50,5 +50,103 @@ namespace DES_Cipher_Tests
 
             CollectionAssert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void Function_MergeStrings_Works()
+        {
+            Function f = new Function();
+            string[] toMerge = new string[8]
+            {
+                "0101",
+                "1100",
+                "1000",
+                "0010",
+                "1011",
+                "0101",
+                "1001",
+                "0111",
+            };
+            string result = f.MergeStrings(toMerge);
+
+            Assert.AreEqual("01011100100000101011010110010111", result);
+        }
+
+        [TestMethod]
+        public void Function_BinToDec_Works()
+        {
+            Function f = new Function();
+            int result = f.BinToDec("0000");
+
+            Assert.AreEqual(0, result);
+        }
+        public void Function_BinToDec1_Works()
+        {
+            Function f = new Function();
+            int result = f.BinToDec("1100");
+
+            Assert.AreEqual(12, result);
+        }
+
+        [TestMethod]
+        public void Function_DecToBin_Works()
+        {
+            Function f = new Function();
+            string result = f.DecToBin(5);
+
+            Assert.AreEqual("0101", result);
+        }
+        [TestMethod]
+        public void Function_DecToBin1_Works()
+        {
+            Function f = new Function();
+            string result = f.DecToBin(2);
+
+            Assert.AreEqual("0010", result);
+        }
+        [TestMethod]
+        public void Function_DecToBin2_Works()
+        {
+            Function f = new Function();
+            string result = f.DecToBin(1);
+
+            Assert.AreEqual("0001", result);
+        }
+
+        [TestMethod]
+        public void Function_GetRow_Works()
+        {
+            Function f = new Function();
+            int result = f.GetRow("011000");
+
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void Function_GetCol_Works()
+        {
+            Function f = new Function();
+            int result = f.GetCol("011000");
+
+            Assert.AreEqual(12, result);
+        }
+
+        [TestMethod]
+        public void Function_GetSNumber_Works()
+        {
+            Function f = new Function();
+            int result = f.GetSNumber(0, 0, 12);
+
+            Assert.AreEqual(5, result); 
+        }
+
+
+        [TestMethod]
+        public void Function_PrimitiveFunctions_Works()
+        {
+            Function f = new Function();
+            string result = f.PrimitiveFunctions("011000010001011110111010100001100110010100100111");
+
+            Assert.AreEqual("01011100100000101011010110010111", result);
+        }
     }
 }
