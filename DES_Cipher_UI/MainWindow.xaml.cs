@@ -11,6 +11,7 @@ namespace DES_Cipher_UI
     public partial class MainWindow : Window
     {
         DES_Cipher _cipher;
+        int mode = 0;
         public MainWindow()
         {
             InitializeComponent();
@@ -21,6 +22,8 @@ namespace DES_Cipher_UI
         {
             fileRB.IsChecked = true;
             encryptRB.IsChecked = true;
+            keyAsciiRB.IsChecked = true;
+            inputAsciiRB.IsChecked = true;
         }
 
         private void input_Checked(object sender, RoutedEventArgs e)
@@ -59,7 +62,7 @@ namespace DES_Cipher_UI
             }
             if (fileRB.IsChecked == true)
             {
-                string[] input = Common.ReadBlocksFromFile(inputTB.Text);
+                string[] input = Common.ReadBlocksFromFile(inputTB.Text, mode);
                 string[] results = new string[input.Length];
                 for (int i = 0; i < input.Length; i++)
                 {
@@ -74,7 +77,7 @@ namespace DES_Cipher_UI
 
 
                 }
-                Common.WriteBlocksToFile(inputTB.Text.Substring(0, inputTB.Text.Length - 4) + ".out.bin", results);
+                Common.WriteBlocksToFile(inputTB.Text.Substring(0, inputTB.Text.Length - 4) + ".out.bin", results, mode);
             }
             else
             {
@@ -97,6 +100,19 @@ namespace DES_Cipher_UI
                     result = _cipher.Decrypt(_input, _key);
                 }
                 outTB.Text = Common.BytesToHEX(result);
+            }
+        }
+
+        private void cipherMode_Checked(object sender, RoutedEventArgs e)
+        {
+            var _radiobutton = sender as RadioButton;
+            if (_radiobutton.Name == "encryptRB")
+            {
+                mode = 0;
+            }
+            else
+            {
+                mode = 1;
             }
         }
     }

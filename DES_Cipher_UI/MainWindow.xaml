@@ -27,10 +27,11 @@
         <Label Margin="5" Grid.Row="1" Content="Key" HorizontalAlignment="Center" ></Label>
         <TextBox Margin="5" Padding="5" Grid.Row="1" Grid.Column="1" Name="keyTB"></TextBox>
 
-        <Button Margin="5 14 5 6" Padding="15 5" Grid.Row="2" Grid.Column="3" Name="runBTN" Content="Run" Click="runBTN_Click"></Button>
-        <Label Margin="5" Grid.Row="2" Content="Result" HorizontalAlignment="Center"></Label>
-        <TextBox Margin="5" Padding="5" Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="outTB"></TextBox>
-        <Grid Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2">
+        <Label Margin="5 9 5 1" Grid.Row="2" Content="Result" HorizontalAlignment="Center"></Label>
+        <TextBox Margin="5 9 5 1" Padding="5" Grid.Row="2" Grid.Column="1" IsEnabled="False" Name="outTB"></TextBox>
+        <Button Margin="5 9 5 1" Padding="15 0" Grid.Row="2" Grid.Column="3" Name="runBTN" Content="Run" Click="runBTN_Click"></Button>
+        
+        <Grid Grid.Row="3" Grid.ColumnSpan="3">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -46,20 +47,20 @@
                 </GroupBox>
                 <GroupBox HorizontalAlignment="Right" Grid.Column="1" Margin="5" Header="Input">
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Name="inputAsciiRB" GroupName="desInput" Content="ASCII" Margin="5 0"></RadioButton>
-                        <RadioButton Name="inputHexRB" GroupName="desInput" Content="HEX" Margin="5 0"></RadioButton>
+                        <RadioButton Name="inputAsciiRB" GroupName="inputType" Content="ASCII" Margin="5 0"></RadioButton>
+                        <RadioButton Name="inputHexRB" GroupName="inputType" Content="HEX" Margin="5 0"></RadioButton>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox HorizontalAlignment="Right" Grid.Column="2" Margin="5" Header="Key">
                     <StackPanel Orientation="Horizontal">
-                        <RadioButton Name="keyAsciiRB" GroupName="desInput" Content="ASCII" Margin="5 0"></RadioButton>
-                        <RadioButton Name="keyHexRB" GroupName="desInput" Content="HEX" Margin="5 0"></RadioButton>
+                        <RadioButton Name="keyAsciiRB" GroupName="keyType" Content="ASCII" Margin="5 0"></RadioButton>
+                        <RadioButton Name="keyHexRB" GroupName="keyType" Content="HEX" Margin="5 0"></RadioButton>
                     </StackPanel>
                 </GroupBox>
                 <GroupBox Margin="5" Header="Mode" Grid.Column="3" HorizontalAlignment="Right">
                 <StackPanel Orientation="Horizontal">
-                    <RadioButton Name="encryptRB" GroupName="desMode" Content="Encrypt" Margin="5 0"></RadioButton>
-                    <RadioButton Name="decryptRB" GroupName="desMode" Content="Decrypt" Margin="5 0"></RadioButton>
+                    <RadioButton Name="encryptRB" GroupName="desMode" Content="Encrypt" Margin="5 0" Checked="cipherMode_Checked"></RadioButton>
+                    <RadioButton Name="decryptRB" GroupName="desMode" Content="Decrypt" Margin="5 0" Checked="cipherMode_Checked"></RadioButton>
                 </StackPanel>
             </GroupBox>
             </Grid>
