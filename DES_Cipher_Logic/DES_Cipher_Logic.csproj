@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common.cs" />
+    <Compile Include="DES_Cipher.cs" />
     <Compile Include="KeyGenerator.cs" />
     <Compile Include="Permutations.cs" />
     <Compile Include="Tables.cs" />

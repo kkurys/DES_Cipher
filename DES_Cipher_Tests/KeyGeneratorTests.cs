@@ -15,17 +15,7 @@ namespace DES_Cipher_Tests
             result = _keyGen.LeftShift("BBBDDD", 4);
             Assert.AreEqual("DDBBBD", result);
         }
-        [TestMethod]
-        public void StringIsEquallySplit()
-        {
-            KeyGenerator _keyGen = new KeyGenerator();
-            string C = "", D = "";
-            _keyGen.SplitString("11111111000000000111100001010101000000000000000010000000", ref C, ref D);
-            Assert.AreEqual(28, C.Length);
-            Assert.AreEqual(28, D.Length);
-            Assert.AreEqual("1111111100000000011110000101", C);
-            Assert.AreEqual("0101000000000000000010000000", D);
-        }
+
         [TestMethod]
         public void KeyGeneratorWorks()
         {

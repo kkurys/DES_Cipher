@@ -50,6 +50,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="CommonTests.cs" />
     <Compile Include="KeyGeneratorTests.cs" />
     <Compile Include="PermutationTests.cs" />
     <Compile Include="Function_Tests.cs" />

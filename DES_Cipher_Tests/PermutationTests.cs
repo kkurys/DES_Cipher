@@ -11,7 +11,7 @@ namespace DES_Cipher_Tests
         {
             Permutations _p = new Permutations();
 
-            var result = _p.InitialPermutation(_p.WordToBytes("ABCDEFGH"));
+            var result = _p.InitialPermutation(Common.WordToBytes("ABCDEFGH"));
             Assert.AreEqual(64, result.Length);
             Assert.AreEqual("1111111100000000011110000101010100000000000000001000000001100110", result);
         }
@@ -46,17 +46,6 @@ namespace DES_Cipher_Tests
 
         }
 
-        [TestMethod]
-        public void WordToBytesWorks()
-        {
-            Permutations _p = new Permutations();
 
-            var result = _p.WordToBytes("AB");
-
-            Assert.AreEqual("0100000101000010", result);
-
-            result = _p.WordToBytes("ABCDEFGH");
-            Assert.AreEqual("0100000101000010010000110100010001000101010001100100011101001000", result);
-        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DES_Cipher_Logic
+﻿namespace DES_Cipher_Logic
 {
     public class Permutations
     {
@@ -23,16 +21,6 @@ namespace DES_Cipher_Logic
             }
 
             return _result;
-        }
-        public string WordToBytes(string _word)
-        {
-            string _bytes = "";
-            for (int i = 0; i < _word.Length; i++)
-            {
-                _bytes += Convert.ToString(_word[i], 2).PadLeft(8, '0');
-            }
-            return _bytes;
-
         }
         public string FirstChoicePermutation(string _key)
         {

@@ -14,7 +14,7 @@
             _key = _p.FirstChoicePermutation(_key);
 
             string C = "", D = "";
-            SplitString(_key, ref C, ref D);
+            Common.SplitString(_key, ref C, ref D);
             for (int i = 0; i < 16; i++)
             {
                 if (i == 0 || i == 1 || i == 8 || i == 15)
@@ -34,16 +34,12 @@
         }
         public string LeftShift(string _word, int N)
         {
-            string result = "";
+            string _result = "";
 
-            result += _word.Substring(N) + _word.Substring(0, N);
+            _result += _word.Substring(N) + _word.Substring(0, N);
 
-            return result;
+            return _result;
         }
-        public void SplitString(string _key, ref string C, ref string D)
-        {
-            C = _key.Substring(0, 28);
-            D = _key.Substring(28);
-        }
+
     }
 }
