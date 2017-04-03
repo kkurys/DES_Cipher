@@ -77,29 +77,13 @@ namespace DES_Cipher_Logic
             return result;
         }
 
-        public int BinToDec(string bin)
-        {
-            int dec = Convert.ToInt32(bin, 2);
-            return dec;
-        }
-
-        public string DecToBin(int dec)
-        {
-            string bin = Convert.ToString(dec, 2);
-            while (bin.Length < 4)
-            {
-                bin = "0" + bin;
-            }
-            return bin;
-        }
-
         public int GetRow(string byteStr)
         {
             string result = "";
             result += byteStr[0];
             result += byteStr[5];
 
-            return BinToDec(result);
+            return Common.BinToDec(result);
         }
         public int GetCol(string byteStr)
         {
@@ -109,7 +93,7 @@ namespace DES_Cipher_Logic
             result += byteStr[3];
             result += byteStr[4];
 
-            return BinToDec(result);
+            return Common.BinToDec(result);
         }
 
         public int GetSNumber(int sBlock, int row, int col)
@@ -140,7 +124,7 @@ namespace DES_Cipher_Logic
                 int row = GetRow(byteStr);
                 int col = GetCol(byteStr);
 
-                result[i] = DecToBin(GetSNumber(i, row, col));
+                result[i] = Common.DecToBin(GetSNumber(i, row, col), 4);
             }
 
             return MergeStrings(result);

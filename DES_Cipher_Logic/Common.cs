@@ -22,11 +22,20 @@ namespace DES_Cipher_Logic
 
         }
 
+        public static string ExtendBlockTo64bit(string _toExtend)
+        {
+            while (_toExtend.Length < 64)
+            {
+                _toExtend += '0';
+            }
+            return _toExtend;
+        }
+
         public static string[] ReadBlocksFromFile(string _fileName)
         {
             byte[] fileBytes = File.ReadAllBytes(_fileName);
             List<string> blocks = new List<string>();
-            int count = 0;
+            int count = 0, extendNumber = 0;
             string block64bit = "";
 
             foreach (byte b in fileBytes)
@@ -35,11 +44,18 @@ namespace DES_Cipher_Logic
                 count++;
                 if (count == 8)
                 {
+                    if (block64bit.Length < 64)
+                    {
+                        extendNumber = 64 - block64bit.Length;
+                        block64bit = ExtendBlockTo64bit(block64bit);
+                    }
                     blocks.Add(block64bit);
                     block64bit = "";
                     count = 0;
                 }
             }
+
+            blocks.Add(DecToBin(extendNumber, 64));
 
             return blocks.ToArray();
         }
@@ -47,25 +63,61 @@ namespace DES_Cipher_Logic
         public static void WriteBlocksToFile(string _fileName, string[] _blocks)
         {
             List<byte> byteList = new List<byte>();
-            int count = 0;
 
-            foreach (string block64bit in _blocks)
+            int extendNumber = BinToDec(_blocks[_blocks.Length - 1]);
+
+            for (int i = 0; i < _blocks.Length - 1; i++)
             {
+                string block64bit = _blocks[i];
                 string byteStr = "";
-                foreach (char c in block64bit)
+                int count = 0;
+                if (i == _blocks.Length - 2)
                 {
-                    byteStr += c;
-                    count++;
-                    if (count == 8)
+                    for (int j = 0; j < block64bit.Length - extendNumber; j++)
                     {
-                        byteList.Add(Convert.ToByte(byteStr, 2));
-                        byteStr = "";
-                        count = 0;
+                        byteStr += block64bit[j];
+                        count++;
+                        if (count == 8)
+                        {
+                            byteList.Add(Convert.ToByte(byteStr, 2));
+                            byteStr = "";
+                            count = 0;
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (char c in block64bit)
+                    {
+                        byteStr += c;
+                        count++;
+                        if (count == 8)
+                        {
+                            byteList.Add(Convert.ToByte(byteStr, 2));
+                            byteStr = "";
+                            count = 0;
+                        }
                     }
                 }
             }
 
             File.WriteAllBytes(_fileName, byteList.ToArray());
+        }
+
+        public static string DecToBin(int dec, int numberOfBits)
+        {
+            string bin = Convert.ToString(dec, 2);
+            while (bin.Length < numberOfBits)
+            {
+                bin = "0" + bin;
+            }
+            return bin;
+        }
+
+        public static int BinToDec(string bin)
+        {
+            int dec = Convert.ToInt32(bin, 2);
+            return dec;
         }
     }
 }
