@@ -1,23 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DES_Cipher_Logic
 {
-    public class Function : Constans
+    public class Function
     {
 
         public string ExtendBits(string inBits)
         {
             string outBits = "";
-            
+
             for (int i = 0; i < 8; i++)
             {
                 for (int j = 0; j < 6; j++)
                 {
-                    outBits += inBits[EBitSelection[i, j] - 1];
+                    outBits += inBits[Tables.EBitSelection[i, j] - 1];
                 }
             }
 
@@ -90,7 +86,7 @@ namespace DES_Cipher_Logic
         public string DecToBin(int dec)
         {
             string bin = Convert.ToString(dec, 2);
-            while(bin.Length < 4)
+            while (bin.Length < 4)
             {
                 bin = "0" + bin;
             }
@@ -120,14 +116,14 @@ namespace DES_Cipher_Logic
         {
             int[,] currS;
 
-            if (sBlock == 0) currS = S1;
-            else if (sBlock == 1) currS = S2;
-            else if (sBlock == 2) currS = S3;
-            else if (sBlock == 3) currS = S4;
-            else if (sBlock == 4) currS = S5;
-            else if (sBlock == 5) currS = S6;
-            else if (sBlock == 6) currS = S7;
-            else currS = S8;
+            if (sBlock == 0) currS = Tables.S1;
+            else if (sBlock == 1) currS = Tables.S2;
+            else if (sBlock == 2) currS = Tables.S3;
+            else if (sBlock == 3) currS = Tables.S4;
+            else if (sBlock == 4) currS = Tables.S5;
+            else if (sBlock == 5) currS = Tables.S6;
+            else if (sBlock == 6) currS = Tables.S7;
+            else currS = Tables.S8;
 
             return currS[row, col];
         }
@@ -158,7 +154,7 @@ namespace DES_Cipher_Logic
             {
                 for (int j = 0; j < 4; j++)
                 {
-                    result += input[PTable[i, j] - 1];
+                    result += input[Tables.PTable[i, j] - 1];
                 }
             }
 
