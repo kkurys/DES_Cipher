@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,34 @@ namespace DES_Cipher_UI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            fileRB.IsChecked = true;
+            encryptRB.IsChecked = true;
+        }
+
+        private void input_Checked(object sender, RoutedEventArgs e)
+        {
+            var _radiobutton = sender as RadioButton;
+            if (_radiobutton.Name == "fileRB")
+            {
+                fileBTN.IsEnabled = true;
+            }
+            else
+            {
+                fileBTN.IsEnabled = false;
+            }
+        }
+
+        private void fileBTN_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            if (fileDialog.ShowDialog() == true)
+            {
+                inputTB.Text = fileDialog.FileName;
+            }
         }
     }
 }
