@@ -72,7 +72,9 @@ namespace DES_Cipher_UI
                         results[i] = _cipher.Decrypt(input[i], _key);
                     }
 
+
                 }
+                Common.WriteBlocksToFile(inputTB.Text.Substring(0, inputTB.Text.Length - 4) + ".out.bin", results);
             }
             else
             {
