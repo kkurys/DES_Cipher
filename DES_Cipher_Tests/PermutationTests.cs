@@ -11,7 +11,7 @@ namespace DES_Cipher_Tests
         {
             Permutations _p = new Permutations();
 
-            var result = _p.InitialPermutation(Common.WordToBytes("ABCDEFGH"));
+            var result = _p.InitialPermutation(Common.WordToBytesFromASCII("ABCDEFGH"));
             Assert.AreEqual(64, result.Length);
             Assert.AreEqual("1111111100000000011110000101010100000000000000001000000001100110", result);
         }
