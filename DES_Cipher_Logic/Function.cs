@@ -160,5 +160,14 @@ namespace DES_Cipher_Logic
 
             return result;
         }
+
+        public string GetFunctionResult(string input, string key)
+        {
+            input = ExtendBits(input);
+            input = Xor(input, key);
+            input = PrimitiveFunctions(input);
+            input = PFunction(input);
+            return input;
+        }
     }
 }
