@@ -159,5 +159,14 @@ namespace DES_Cipher_Tests
 
             Assert.AreEqual("00100011010010101010100110111011", result);
         }
+
+        [TestMethod]
+        public void Function_Function_Works()
+        {
+            Function f = new Function();
+            string result = f.GetFunctionResult("11110000101010101111000010101010", "000110110000001011101111111111000111000001110010");
+
+            Assert.AreEqual("00100011010010101010100110111011", result);
+        }
     }
 }
