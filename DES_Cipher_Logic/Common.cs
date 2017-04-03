@@ -11,7 +11,7 @@ namespace DES_Cipher_Logic
             L = _key.Substring(0, _key.Length / 2);
             R = _key.Substring(_key.Length / 2);
         }
-        public static string WordToBytes(string _word)
+        public static string WordToBytesFromASCII(string _word)
         {
             string _bytes = "";
             for (int i = 0; i < _word.Length; i++)
@@ -19,9 +19,26 @@ namespace DES_Cipher_Logic
                 _bytes += Convert.ToString(_word[i], 2).PadLeft(8, '0');
             }
             return _bytes;
-
         }
+        public static string WordToBytesFromHEX(string _word)
+        {
+            string _bytes = "";
 
+            _bytes += Convert.ToString(Convert.ToInt64(_word, 16), 2).PadLeft(64, '0');
+
+            return _bytes;
+        }
+        public static string BytesToHEX(string _wordInBytes)
+        {
+            string _word = "";
+
+            for (int i = 0; i < _wordInBytes.Length; i += 4)
+            {
+                _word += Convert.ToString(Convert.ToInt32(_wordInBytes.Substring(i, 4), 2), 16);
+            }
+
+            return _word.ToUpper();
+        }
         public static string[] ReadBlocksFromFile(string _fileName)
         {
             byte[] fileBytes = File.ReadAllBytes(_fileName);
