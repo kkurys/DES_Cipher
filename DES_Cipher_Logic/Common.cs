@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace DES_Cipher_Logic
 {
@@ -18,6 +20,28 @@ namespace DES_Cipher_Logic
             }
             return _bytes;
 
+        }
+
+        public static string[] ReadBlocksFromFile(string _fileName)
+        {
+            byte[] fileBytes = File.ReadAllBytes(_fileName);
+            List<string> blocks = new List<string>();
+            int count = 0;
+            string block64bit = "";
+
+            foreach (byte b in fileBytes)
+            {
+                block64bit += Convert.ToString(b, 2).PadLeft(8, '0');
+                count++;
+                if (count == 8)
+                {
+                    blocks.Add(block64bit);
+                    block64bit = "";
+                    count = 0;
+                }
+            }
+
+            return blocks.ToArray();
         }
     }
 }
