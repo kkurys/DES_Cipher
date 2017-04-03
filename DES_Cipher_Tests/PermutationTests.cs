@@ -26,6 +26,27 @@ namespace DES_Cipher_Tests
 
         }
         [TestMethod]
+        public void FirstChoicePermutationReturns56CharacterString()
+        {
+            Permutations _p = new Permutations();
+
+            var result = _p.FirstChoicePermutation("1111111100000000011110000101010100000000000000001000000001100110");
+
+            Assert.AreEqual(56, result.Length);
+
+        }
+        [TestMethod]
+        public void SecondChoicePermutationReturns48CharacterString()
+        {
+            Permutations _p = new Permutations();
+
+            var result = _p.SecondChoicePermutation("11111111000000000111100001010101000000000000000010000000");
+
+            Assert.AreEqual(48, result.Length);
+
+        }
+
+        [TestMethod]
         public void WordToBytesWorks()
         {
             Permutations _p = new Permutations();

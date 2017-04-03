@@ -72,6 +72,23 @@ namespace DES_Cipher_Logic
             return _bytes;
 
         }
-
+        public string FirstChoicePermutation(string _key)
+        {
+            string _result = "";
+            for (int i = 0; i < 56; i++)
+            {
+                _result += _key[_permutedChoice1[i]];
+            }
+            return _result;
+        }
+        public string SecondChoicePermutation(string _key)
+        {
+            string _result = "";
+            for (int i = 0; i < 48; i++)
+            {
+                _result += _key[_permutedChoice2[i]];
+            }
+            return _result;
+        }
     }
 }
