@@ -79,6 +79,8 @@ namespace DES_Cipher_Tests
 
             Assert.AreEqual(0, result);
         }
+
+        [TestMethod]
         public void Function_BinToDec1_Works()
         {
             Function f = new Function();
@@ -147,6 +149,15 @@ namespace DES_Cipher_Tests
             string result = f.PrimitiveFunctions("011000010001011110111010100001100110010100100111");
 
             Assert.AreEqual("01011100100000101011010110010111", result);
+        }
+
+        [TestMethod]
+        public void Function_PFunction_Works()
+        {
+            Function f = new Function();
+            string result = f.PFunction("01011100100000101011010110010111");
+
+            Assert.AreEqual("00100011010010101010100110111011", result);
         }
     }
 }

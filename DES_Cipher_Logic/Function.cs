@@ -134,12 +134,12 @@ namespace DES_Cipher_Logic
 
         public string PrimitiveFunctions(string input)
         {
-            string[] inputTab = ParseFor6bit(input);
+            string[] inputBytes = ParseFor6bit(input);
             string[] result = new string[8];
 
             for (int i = 0; i < 8; i++)
             {
-                string byteStr = inputTab[i];
+                string byteStr = inputBytes[i];
 
                 int row = GetRow(byteStr);
                 int col = GetCol(byteStr);
@@ -148,6 +148,21 @@ namespace DES_Cipher_Logic
             }
 
             return MergeStrings(result);
+        }
+
+        public string PFunction(string input)
+        {
+            string result = "";
+
+            for (int i = 0; i < 8; i++)
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    result += input[PTable[i, j] - 1];
+                }
+            }
+
+            return result;
         }
     }
 }
