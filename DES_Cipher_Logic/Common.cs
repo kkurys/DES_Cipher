@@ -43,5 +43,29 @@ namespace DES_Cipher_Logic
 
             return blocks.ToArray();
         }
+
+        public static void WriteBlocksToFile(string _fileName, string[] _blocks)
+        {
+            List<byte> byteList = new List<byte>();
+            int count = 0;
+
+            foreach (string block64bit in _blocks)
+            {
+                string byteStr = "";
+                foreach (char c in block64bit)
+                {
+                    byteStr += c;
+                    count++;
+                    if (count == 8)
+                    {
+                        byteList.Add(Convert.ToByte(byteStr, 2));
+                        byteStr = "";
+                        count = 0;
+                    }
+                }
+            }
+
+            File.WriteAllBytes(_fileName, byteList.ToArray());
+        }
     }
 }
