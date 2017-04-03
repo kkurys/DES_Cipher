@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="KeyGeneratorTests.cs" />
     <Compile Include="PermutationTests.cs" />
+    <Compile Include="Function_Tests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
